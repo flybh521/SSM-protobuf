@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <list>
+		<server  id="1" name="祥功服1" status="1" soketUrl="192.168.1.181" port="5001" url="http://192.168.1.181:6001" openTime="">
+			<!-- 对谁显示 -->
+			<displayPlat>self</displayPlat>
+		</server>
+		<server  id="2" name="祥功服2" status="1" soketUrl="192.168.1.181" port="5001"  url="http://192.168.1.181:6001" openTime="">
+			<!-- 对谁显示 -->
+			<displayPlat>self</displayPlat>
+		</server>
+		<server  id="3" name="强3" status="2" soketUrl="192.168.1.110" port="7001" url="http://192.168.1.181:6001" openTime="">
+			<!-- 对谁显示 -->
+			<displayPlat>self</displayPlat>
+		</server>
+		<server  id="4" name="强4" status="3" soketUrl="192.168.1.181" port="7001"   url="http://192.168.1.181:6001" openTime="">
+			<!-- 对谁显示 -->
+			<displayPlat>self</displayPlat>
+		</server>
+		<server  id="5" name="强5" status="1" soketUrl="192.168.1.181" port="7001"  url="http://192.168.1.181:6001" openTime="">
+			<!-- 对谁显示 -->
+			<displayPlat>self</displayPlat>
+		</server>
+		<server  id="6" name="强6" status="0" soketUrl="192.168.1.181" port="7001"  url="http://192.168.1.181:6001" openTime="">
+			<!-- 对谁显示 -->
+			<displayPlat>self</displayPlat>
+		</server>
+		<server  id="7" name="强7" status="1" soketUrl="192.168.1.181" port="7001" url="http://192.168.1.181:6001" openTime="">
+			<!-- 对谁显示 -->
+			<displayPlat>self</displayPlat>
+		</server>
+	</list>
+</root>

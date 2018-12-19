@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+
+    
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+
+		<property name = "url" value = "${jdbcUrl}" />
+		<property name = "username" value = "${dbUser}" />
+		<property name = "password" value = "${dbPass}" />
+		<property name = "driverClassName" value = "com.mysql.jdbc.Driver" />
+
+		<!-- 最大并发连接数 -->
+		<property name = "maxActive" value = "250" />
+
+		<!-- 初始化连接数量 -->
+		<property name = "initialSize" value = "25" />
+
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name = "maxWait" value = "5000" />
+
+		<!-- 最小空闲连接数 -->
+		<property name = "minIdle" value = "25" />
+
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name = "timeBetweenEvictionRunsMillis" value ="60000" />
+
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name = "minEvictableIdleTimeMillis" value ="300000" />
+
+		<property name = "validationQuery" value = "select 'x'" />
+		<property name = "testWhileIdle" value = "true" />
+		<property name = "testOnBorrow" value = "false" />
+		<property name = "testOnReturn" value = "false" />
+
+		<!-- 打开 removeAbandoned 功能 -->
+		<property name = "removeAbandoned" value = "true" />
+
+		<!-- 1800 秒，也就是 30 分钟 -->
+		<property name = "removeAbandonedTimeout" value ="1800" />
+
+		<!-- 关闭 abanded 连接时输出错误日志 -->
+		<property name = "logAbandoned" value = "true" />
+		
+	</bean>
+
+
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:configLocation="classpath:mybatisConfig.xml" p:mapperLocations="classpath*:mapper/*.xml"
+		p:dataSource-ref="dataSource" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean name="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+
+	<bean id="pBaseDao" class="com.humanvoyage.dao.BaseDao" abstract="true"
+		p:sqlSessionFactory-ref="sessionFactory" />
+    <bean class="com.humanvoyage.dao.impl.AccountDao" parent="pBaseDao" />
+	<!--<bean class="com.knight.web.dao.impl.UserProfileDao" parent="pBaseDao" />-->
+
+
+
+
+
+</beans>
